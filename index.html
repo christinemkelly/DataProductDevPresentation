@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data Product Development Project</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Data Product Development Project">
+  <meta name="author" content="Dr. C. Kelly">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Data Product Development Project</h1>
+    <h2>Determining A Final Exam Grade</h2>
+    <p>Dr. C. Kelly<br/>Chemistry Instructor and Academic Advisor</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h3><span style='font-weight:bold; color:darkblue; text-align:center;'>Tell me more about this app please!</span></h3>
+  </hgroup>
+  <article data-timings="">
+    <p><span style='font-weight:bold;font-style:italic;'>Background: </span></p>
+
+<p style='font-size:16px;'>As a college chemistry instructor for nearly 30 years, I routinely address the question "What do I need on the final to pass this class?" With this app a student can see exactly what they need on the final exam to get the course grade they want or need.  </p>
+        
+
+<p><span style='font-weight:bold;font-style:italic;'>Who would use the app? </span></p>
+
+<p style='font-size:16px;'>Students and instructors.  </p>
+        
+
+<p><span style='font-weight:bold;font-style:italic;'>What do they need to run the app? </span></p>
+
+<p style='font-size:16px;'>Just the points they've earned on three exams and homework assignments. </p>
+
+<p><span style='font-weight:bold;font-style:italic;'>What do they get out? </span></p>
+
+<p style='font-size:16px;'>The final exam score needed to achieve their desired course grade AND a predicted final exam score that allows them to realistically assess the possibility of achieving that grade. The app could be a wake-up call for students such that they put more effort into preparing for the final or adjust their expectations about the course outcome. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h3><span style='font-weight:bold; color:darkblue;text-align:center;'>How was the App developed?</span></h3>
+  </hgroup>
+  <article data-timings="">
+    <p style='font-size:16px;'>Based on the self-reported exam and homework scores, and the student's desired final course outcome, a simple difference calculation reveals the points needed on the final exam. Assuming 1000 total points in the course, and only these 4 graded items, the points needed on the final exam is given by:</p> 
+
+<p style= 'font-size:20px; color:darkblue; text-align:center;'>
+Final Exam Points = (desired %)(1000 pts) - (Points from Exams & Homework)  </p>
+
+<p style='font-size:16px;'>This value is easily expressed as a percentage by dividing by 250, the total possible points on the final exam.</p>
+        
+
+<p style='font-size:16px;'>Over many years of teaching general chemistry I had noticed that students typically scored lower on the final exam than the average of their 3 exams. Why? It's difficult for students to retain a semester's worth of knowledge for a cumulative exam and finals are stressfull. So performance if often less than what students think they can do. It's valuable for the students to see what final exam score is predicted based on the performance of previous students with similar scores going into the final. For the predictive portion of the app, final exam scores for the years 2006 - 2015 were fitted to 15 models using linear regression, CART and random forest fitting methods; the data file and R code for this analysis are in the github repo. The model with the greatest R squared value was the linear regression model using all three exams as predictors for the final exam score.</p>
+        
+
+<p style='font-size:16px;'>The coefficients for the line of best fit for the chosen model were extracted and used in the app to predict the student's final exam score based on their self-reported exam scores. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h3><span style='font-weight:bold; color:darkblue';> Predicting Your Final Exam Score</span></h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Students tend to over-estimate their final exam scores. Data in my classes since 2009 indicate that about 72% of students score lower on the final exam than the average of their three semester exams. Suppose you had the following exam scores: 56%, 72% and 68%. What do you think is a reasonable prediction for your final exam score? Remember you plan to study REALLY hard for the final!!</p>
+
+<ol>
+<li>65.7%</li>
+<li>82.3%</li>
+<li><em>60.9</em></li>
+<li>70.0%</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>The predicted average will be less than the numeric average of the three exam scores.</p>
+
+</div>
+<div class="quiz-explanation">
+  <p>Using the predictive model built for this class, and in the app as well, a value of 60.87% is calculated.</p>
+
+<p>\[Predicted Final Exam Score = 0.28875*Exam I  + 0.20718*Exam II + 0.43496*Exam III = 60.87142\]</p>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h3><span style='font-weight:bold; color:darkblue';>Conclusions</span></h3>
+  </hgroup>
+  <article data-timings="">
+    <p style='font-size:16px;'>The linear regression model used to fit the 3 individual exam scores to the known final exam score had an R squared value of 0.9844 (when going through the origin). This fit has a quite favorable predicitive ability and therefore is of great value when trying to get students to think about their final exam grade and hopefully inspiring (or scaring!) them into putting significant effort on that all-important exam.</p>
+
+<p style='font-size:16px;'>Being very much a novice in the Data Science and R world, this project was sufficiently challenging for me....I know much more exciting projects and apps are being created by others in the community. But this project gave me something useful as we entered the end of the semester. It was an eye-opener to run the app for a student and show them what they may well be looking at for their final exam grade! I'll use anything I can to get them fired up to do well on the exam and have a successful course outcome.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='<span style='font-weight:bold; color:darkblue; text-align:center;'>Tell me more about this app please!</span>'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='<span style='font-weight:bold; color:darkblue;text-align:center;'>How was the App developed?</span>'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='<span style='font-weight:bold; color:darkblue';> Predicting Your Final Exam Score</span>'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='<span style='font-weight:bold; color:darkblue';>Conclusions</span>'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
